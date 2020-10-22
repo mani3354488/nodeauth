@@ -1,5 +1,5 @@
 import express from 'express'
-import mangoose, { Mongoose } from 'mongoose'
+import mongoose, { Mongoose } from 'mongoose'
 import session from 'express-session'
 import connectRedis from 'connect-redis'
 import Redis from 'ioredis'
