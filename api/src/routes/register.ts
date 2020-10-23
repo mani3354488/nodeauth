@@ -17,6 +17,9 @@ router.post('/register', async(req, res) => {
     const user = await User.create({
         email, name, password
     })
+    
+    logIn(req, user.id)
+
     res.json({message: 'OK'})
 })
 
