@@ -1,9 +1,11 @@
 import { Router } from 'express'
 import { User } from '../models'
 import { registerSchema } from '../validation'
+import { logIn } from '../auth'
+import { guest } from '../middleware'
 const router = Router()
 
-router.post('/register', async(req, res) => {
+router.post('/register', guest, async(req, res) => {
     await registerSchema.validateAsync(req.body, { abortEarly: false })
 
     const { email, name, password } = req.body
@@ -17,7 +19,7 @@ router.post('/register', async(req, res) => {
     const user = await User.create({
         email, name, password
     })
-    
+
     logIn(req, user.id)
 
     res.json({message: 'OK'})
