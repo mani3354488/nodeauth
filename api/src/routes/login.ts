@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { catchAsync } from '../middleware'
+import { catchAsync, guest } from '../middleware'
 import { User } from '../models'
 import { validate, loginSchema } from '../validation'
 import { Unauthorized } from '../errors'
@@ -7,7 +7,7 @@ import { logIn } from '../auth'
 
 const router = Router()
 
-router.post('/login', catchAsync(async (req, res) => {
+router.post('/login', guest, catchAsync(async (req, res) => {
     await validate(loginSchema, req.body)
 
     const { email, password } = req.body

@@ -1,5 +1,3 @@
-import { NextFunction } from "express";
-
 import { Request, Response, NextFunction } from 'express'
 import { isLoggedIn } from '../auth'
 
