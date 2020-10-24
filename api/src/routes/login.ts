@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { catchAsync, guest } from '../middleware'
+import { auth, catchAsync, guest } from '../middleware'
 import { User } from '../models'
 import { validate, loginSchema } from '../validation'
 import { Unauthorized } from '../errors'
@@ -22,8 +22,10 @@ router.post('/login', guest, catchAsync(async (req, res) => {
     res.json({ message: 'OK' })
 }))
 
-router.post('/logout', (req, res) => {
+router.post('/logout', auth, catchAsync(async (req, res) => {
+    await logOut(req, res)
 
-})
+    res.json({ message: 'OK' })
+}))
 
 export default router 
