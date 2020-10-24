@@ -24,7 +24,7 @@ router.post('/register', guest, catchAsync(async(req, res) => {
 
     logIn(req, user.id)
 
-    res.json({message: 'OK'})
+    res.json({message: 'You are logged in'})
 }))
 
 export default router
