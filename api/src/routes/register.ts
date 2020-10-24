@@ -15,7 +15,7 @@ router.post('/register', guest, catchAsync(async(req, res) => {
     const found = await User.exists({ email })
 
     if (found) {
-        throw new BadRequest('Invalid Error')
+        throw new BadRequest('Invalid Email')
     }
 
     const user = await User.create({
