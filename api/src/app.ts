@@ -21,8 +21,10 @@ export const createApp = (store: Store) => {
         res.status(404).json({ message : 'Not found' })
     })
 
-    app.use((err: Error, req: Request, res: Response, next: NextFunction)=> {
-        console.error(err.stack)
+    app.use((err: any, req: Request, res: Response, next: NextFunction)=> {
+        if (!err.status) {
+            console.error(err.stack)
+        }
         res.status(500).json({ message: 'Internal Server Error'})
     })
 
