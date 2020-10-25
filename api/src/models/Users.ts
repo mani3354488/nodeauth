@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { compare, hash } from 'bcryptjs'
 import { BCRYPT_WORK_FACTOR } from '../config'
+import { options } from '@hapi/joi'
 
 interface UserDocument extends Document {
     email: string
@@ -27,7 +28,7 @@ userSchema.methods.matchesPassword = function(password: string) {
     return compare(password, this.password)
 }
 
-userSchema.methods.matchesPassword = function (password: string) {
-    return compare(password, this.password)
-}
+userSchema.set('toJSON', {
+    transform: (doc, {__v, password, ...rest}, options) => rest
+})
 export const User = model('User', userSchema)

@@ -2,7 +2,7 @@ import express from 'express'
 import session, {Store} from 'express-session'
 import { logIn } from './auth'
 import { SESSION_OPTIONS } from './config'
-import { notFound, serverError } from './middleware'
+import { catchAsync, active, notFound, serverError } from './middleware'
 import { register, login, home  } from './routes'
 
 export const createApp = (store: Store) => {
@@ -17,6 +17,8 @@ export const createApp = (store: Store) => {
         })
     )
     
+    app.use(catchAsync(active))
+
     app.use(home)
 
     app.use(login)
