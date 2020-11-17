@@ -1,6 +1,9 @@
 version: '3'
 
 services:
+    web:
+        image: newjwt
+        build: .
     db: 
         user: $UID
         image: mongo
@@ -14,10 +17,9 @@ services:
             MONGO_PASSWORD: secret
         volumes:
             - ./data:/data/db 
-            - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
-    
+            - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro    
     cache:
         image: redis:alpine
         ports:
-            - '6379:6379'
+            - '6380:6379'
         command: ['--requirepass "secret"']

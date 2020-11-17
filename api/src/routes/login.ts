@@ -3,7 +3,7 @@ import { auth, catchAsync, guest } from '../middleware'
 import { User } from '../models'
 import { validate, loginSchema } from '../validation'
 import { Unauthorized } from '../errors'
-import { logIn } from '../auth'
+import { logIn, logOut } from '../auth'
 
 const router = Router()
 
