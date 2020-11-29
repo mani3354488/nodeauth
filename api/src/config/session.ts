@@ -12,7 +12,7 @@ export const {
     SESSION_IDEL_TIMEOUT = HALF_HOUR,
 } = process.env
 
-export const SESSION_ABSOULT_TIMEOUT = +(env.SESSION_ABSOULTE_TIMEOUT || SIX_HOURS)
+export const SESSION_ABSOULTE_TIMEOUT = +(env.SESSION_ABSOULTE_TIMEOUT || SIX_HOURS)
 
 export const SESSION_OPTIONS: SessionOptions = {
     secret: SESSION_SECRET,
