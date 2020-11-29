@@ -1,6 +1,9 @@
-export { default as home } from './home'
+export * from './home'
 
-export { default as login } from './login'
+export * from './login'
 
-export { default as register } from './register'
+export * from './register'
 
+export * from './reset'
+
+export * from './verify'

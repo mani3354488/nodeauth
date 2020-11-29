@@ -1,30 +1,40 @@
+
 import { Router } from 'express'
-import { User } from '../models'
-import { validate, registerSchema } from '../validation'
-import { logIn } from '../auth'
 import { guest, catchAsync } from '../middleware'
+import { validate, registerSchema } from '../validation'
+import { User } from '../models'
 import { BadRequest } from '../errors'
+import { logIn } from '../auth'
+import { sendMail } from '../mail'
+
 const router = Router()
 
-router.post('/register', guest, catchAsync(async(req, res) => {
+router.post('/register', guest, catchAsync(async (req, res) => {
+  await validate(registerSchema, req.body)
 
-    await validate(registerSchema, req.body)
+  const { email, name, password } = req.body
 
-    const { email, name, password } = req.body
+  const found = await User.exists({ email })
 
-    const found = await User.exists({ email })
+  if (found) {
+    throw new BadRequest('Invalid email')
+  }
 
-    if (found) {
-        throw new BadRequest('Invalid Email')
-    }
+  const user = await User.create({
+    email, name, password
+  })
 
-    const user = await User.create({
-        email, name, password
-    })
+  logIn(req, user.id)
 
-    logIn(req, user.id)
+  const link = user.verificationUrl()
 
-    res.json({message: 'OK'})
+  await sendMail({
+    to: email,
+    subject: 'Verify your email address',
+    text: link
+  })
+
+  res.json({ message: 'OK' })
 }))
 
-export default router
+export { router as register }
