@@ -1,34 +1,32 @@
+
 import express from 'express'
-import session, {Store} from 'express-session'
-import { logIn } from './auth'
+import session, { Store } from 'express-session'
 import { SESSION_OPTIONS } from './config'
-import { catchAsync, active, notFound, serverError } from './middleware'
-import { register, login, home  } from './routes'
+import { home, login, register, verify, reset } from './routes'
+import { notFound, serverError, active } from './middleware'
 
 export const createApp = (store: Store) => {
-    const app = express()
+  const app = express()
 
-    app.use(express.json())
+  app.use(express.json())
 
-    app.use(
-        session({
-            ...SESSION_OPTIONS, 
-            store
-        })
-    )
-    
-    app.use(catchAsync(active))
+  app.use(session({ ...SESSION_OPTIONS, store }))
 
-    app.use(home)
+  app.use(active)
 
-    app.use(login)
+  app.use(home)
 
-    app.use(register)
+  app.use(login)
 
-    app.use(notFound)
+  app.use(register)
 
-    app.use(serverError)
+  app.use(verify)
 
-    return app
+  app.use(reset)
+
+  app.use(notFound)
+
+  app.use(serverError)
+
+  return app
 }
-
