@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { isLoggedIn, logOut } from '../auth'
 import { BadRequest, Unauthorized } from '../errors'
-import { SESSION_ABSOULTE_TIMEOUT } from '../config'
+import { SESSION_ABSOLUTE_TIMEOUT } from '../config'
 import { catchAsync } from './errors'
 
 export const guest = (req: Request, res: Response, next: NextFunction) => {
@@ -26,7 +26,7 @@ export const active  = catchAsync(
       const now = Date.now()
       const { createdAt } = req.session as Express.Session
 
-      if (now > createdAt + SESSION_ABSOULTE_TIMEOUT) {
+      if (now > createdAt + SESSION_ABSOLUTE_TIMEOUT) {
         await logOut(req, res)
 
         return next(new Unauthorized('Session expired'))

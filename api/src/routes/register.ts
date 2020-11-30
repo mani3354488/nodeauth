@@ -1,4 +1,3 @@
-
 import { Router } from 'express'
 import { guest, catchAsync } from '../middleware'
 import { validate, registerSchema } from '../validation'

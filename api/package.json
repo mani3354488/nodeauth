@@ -6,42 +6,33 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "dev": "ts-node-dev --transpile-only --no-notify src",
-    "lint": "eslint '**/*.ts'",
-    "lint:fix": "prettier-eslint '**/*.ts' --write"
+    "dev": "ts-node-dev --transpileOnly --no-notify src"
   },
-  "keywords": ["Auth_API"],
-  "author": "Manikanta",
-  "license": "ISC",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
+    "@hapi/joi": "^16.1.8",
     "bcryptjs": "^2.4.3",
-    "connect-redis": "^5.0.0",
+    "connect-redis": "^4.0.3",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "ioredis": "^4.17.3",
-    "redis": "^3.0.2"
+    "express-session": "^1.17.0",
+    "ioredis": "^4.14.1",
+    "mongoose": "^5.8.1",
+    "nodemailer": "^6.4.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
-    "@types/connect-redis": "0.0.14",
-    "@types/express": "^4.17.8",
-    "@types/express-session": "^1.17.0",
-    "@types/hapi__joi": "^17.1.6",
-    "@types/ioredis": "^4.17.6",
-    "@types/mongodb": "^3.5.29",
-    "@types/mongoose": "^5.7.36",
-    "@types/node": "^14.11.10",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.8.2",
-    "eslint": "^7.14.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.2",
-    "prettier": "^2.2.1",
-    "prettier-eslint": "^12.0.0",
-    "ts-node-dev": "^1.0.0",
-    "typescript": "^4.1.2"
+    "@types/connect-redis": "0.0.13",
+    "@types/express": "^4.17.2",
+    "@types/express-session": "^1.15.16",
+    "@types/hapi__joi": "^16.0.4",
+    "@types/ioredis": "^4.14.3",
+    "@types/mongodb": "^3.3.13",
+    "@types/mongoose": "^5.5.34",
+    "@types/node": "^12.12.21",
+    "@types/nodemailer": "^6.4.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.7.3"
   }
 }
