@@ -1,4 +1,3 @@
-
 import express from 'express'
 import session, { Store } from 'express-session'
 import { SESSION_OPTIONS } from './config'
